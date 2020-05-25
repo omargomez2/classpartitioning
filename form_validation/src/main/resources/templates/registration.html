@@ -15,13 +15,15 @@
     		<div class="form-group">
     			<label for="age">Write your age (18-65 years)</label>
     			<input type="text" th:field="*{age}" class="form-control" placeholder="Age"/>
-    			<p id="error" class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
+    			<p id="msg" class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
     		</div>
+    		<!--  
     		<div class="form-group">
         		<label for="name">Write your name</label> 
         		<input type="text" th:field="*{name}" class="form-control" placeholder="Name" />
-        		<p id="error" class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        		<p id="msg" class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
         	</div>
+        	-->
         	<div class="form-group">
         		<input type="submit" value="Submit" class="btn btn-primary"/> <input type="reset" value="Reset" class="btn btn-secondary"/>
         	</div>

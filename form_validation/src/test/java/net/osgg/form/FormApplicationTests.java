@@ -35,7 +35,7 @@ class FormApplicationTests {
     @BeforeEach
     public void setupTest() {
         driver = new ChromeDriver();
-        driver.get("http://localhost:8080/registration");
+        driver.get("http://localhost:8080/registration"); //contenido a verificar
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
     }
 
@@ -48,91 +48,108 @@ class FormApplicationTests {
         }
     }
 
-    @Test
+    @Test //CP01
     public void testAgeVECP01() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("35");
-    	//driver.findElement(By.id("name")).clear();
-    	//driver.findElement(By.id("name")).sendKeys("Omar");
-    	//Thread.sleep(1500); //no recomendable, sólo como ejemplo
-    	
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("age"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
+    	//En caso de requerir alguna comparación referente a un valor
+    	//numérico
+    	
+    	//WebElement ageElement = driver.findElement(By.id("age"));
+    	/*
     	Boolean isInteger = false;
     	try{
-    		  int num = Integer.parseInt(idElement.getText());
+    		  int num = Integer.parseInt(ageElement.getText());
     		  isInteger = true;
     		} catch (NumberFormatException e) {
     		  isInteger = false;
     	}
+    	*/
     	
-    	assertTrue( isInteger && 
-    				(Integer.valueOf(idElement.getText()) >= 18 && 
-    			     Integer.valueOf(idElement.getText()) <= 65) );
-        
-    	//WebElement idContent = driver.findElement(By.id("name"));
-        //assertEquals("Omar", idContent.getText());
+    	assertTrue( msgElement.getText().contains("Welcome") 
+    				// && isInteger && 
+    				//(Integer.valueOf(ageElement.getText()) >= 18 && 
+    			    // Integer.valueOf(ageElement.getText()) <= 65) 
+    				);
     }
 
     
-    @Test
+    @Test //CP02
     public void testAgeNVECP01() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("a");
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("error"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
-    	assertTrue(idElement.getText().contains("Error"));
+    	assertTrue(msgElement.getText().contains("Error"));
     }    
     
-    @Test
+    
+    @Test //CP03
     public void testAgeNVECP02() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("");
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("error"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
-    	assertTrue(idElement.getText().contains("Error"));
+    	assertTrue(msgElement.getText().contains("Error"));
     }
     
-    @Test
+    
+    @Test //CP04
     public void testAgeNVECP03() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("18.5");
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("error"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
-    	assertTrue(idElement.getText().contains("Error"));
+    	assertTrue(msgElement.getText().contains("Error"));
     } 
     
     
-    @Test
+    @Test //CP05
     public void testAgeNVECP04() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("15");
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("error"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
-    	assertTrue(idElement.getText().contains("Error"));
+    	assertTrue(msgElement.getText().contains("Error"));
     } 
     
     
-    @Test
+    @Test //CP06
     public void testAgeNVECP05() throws InterruptedException {
     	driver.findElement(By.id("age")).clear();
     	driver.findElement(By.id("age")).sendKeys("70");
     	driver.findElement(By.id("age")).submit();	    	
 
-    	WebElement idElement = driver.findElement(By.id("error"));
+    	WebElement msgElement = driver.findElement(By.id("msg"));
     	
-    	assertTrue(idElement.getText().contains("Error"));
+    	assertTrue(msgElement.getText().contains("Error"));
     } 
+    
+
+    /*
+    @Test //para probar otros campos
+    public void testName() throws InterruptedException {
+    	driver.findElement(By.id("name")).clear();
+    	driver.findElement(By.id("name")).sendKeys("Omar");
+    	driver.findElement(By.id("name")).submit();
+    	
+    	WebElement idContent = driver.findElement(By.id("name"));
+    	assertEquals("Omar", idContent.getText());
+    	//Thread.sleep(1500); //no recomendable, sólo como ejemplo
+    }
+    */
     
 }
 

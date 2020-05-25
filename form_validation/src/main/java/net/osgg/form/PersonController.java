@@ -18,14 +18,13 @@ public class PersonController {
     return "registration";
   }
 
-  /*
+  
   @PostMapping("/registration")
   public String greetingSubmit(@ModelAttribute Person person) {
     return "result";
   }
-  */
   
-  
+  /*
   @PostMapping("/registration")
   public String checkPersonInfo(@ModelAttribute @Valid Person person, Errors errors) {
 	if (errors.hasErrors() ) {
@@ -33,6 +32,5 @@ public class PersonController {
 	}
 	return "result";
   }
-  
-
+  */
 }
