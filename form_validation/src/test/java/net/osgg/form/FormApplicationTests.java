@@ -44,7 +44,7 @@ class FormApplicationTests {
         if (driver != null) {
         	//Thread.sleep(1000); //no recomendable, sólo como ejemplo
         	driver.close();
-            driver.quit();
+            //driver.quit();
         }
     }
 
